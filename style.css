@@ -1,0 +1,731 @@
+/*
+Theme Name: Cazinha Digital
+Theme URI: http://zonadepropulsao.com.br
+Author: Young Dog Studio
+Author URI: http://youngdog.com.br
+Description: Cazinha
+Version: 1.0
+Text Domain: cazinha
+
+HTML5 Boilerplate.
+Créditos para Nicolas Gallagher, Jonathan Neal
+Alterações: Phellipe Wanderley
+Base styles: Opinionated Default
+
+*/
+
+@font-face {
+    font-family: 'HouseGothicHG23Cond';
+    src: url('fonts/HouseGothicHG23CondBOLD3_23210.eot');
+    src: url('fonts/HouseGothicHG23CondBOLD3_23210.eot') format('embedded-opentype'),
+         url('fonts/HouseGothicHG23CondBOLD3_23210.woff2') format('woff2'),
+         url('fonts/HouseGothicHG23CondBOLD3_23210.woff') format('woff'),
+         url('fonts/HouseGothicHG23CondBOLD3_23210.ttf') format('truetype'),
+         url('fonts/HouseGothicHG23CondBOLD3_23210.svg#HouseGothicHG23CondBOLD3_23210') format('svg');
+         unicode-range: U+000-5FF;
+             font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+
+html, button, input, select, textarea { color: #222; }
+
+body {
+  font-size: 1em;
+  line-height: 1.4;
+}
+/* Remove text-shadow in selection highlight. These selection declarations have to be separate. Customize the background color to match your design */
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/* A better looking default horizontal rule */
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/* Remove the gap between images and the bottom of their containers  */
+img { vertical-align: middle; }
+
+a {
+  text-decoration:none;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+a, a:active, a:focus {
+   outline: none;
+}
+
+/* Remove default fieldset styles */
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.noselect {
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}
+
+/* Allow only vertical resizing of textareas. */
+textarea { resize: vertical; }
+
+/* Aviso para baixar o Chrome no IE7 */
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* Em caso de Float use clear para depois dos elementos */
+.clear { clear:both; }
+.clear.hidden { display:none; }
+
+/* Corrige o padding para não expandir as caixas */
+* {
+  box-sizing: border-box;
+}
+
+.unselect {
+  -webkit-user-select: none;
+-moz-user-select: none;
+-o-user-select: none;
+-ms-user-select: none;
+    user-select: none;
+}
+
+/* 
+/////////////////////////
+
+0. BODY & DEFINIÇÕES IMPORTANTES
+
+  -webkit-transition: color 0.8s ease;
+    -moz-transition: color 0.8s ease;
+    -o-transition: color 0.8s ease;
+    transition: color 0.8s ease;
+
+/////////////////////////
+*/
+
+body {
+  font-family: "Lato", Helvetica, Arial, sans-serif; 
+  font-size: 17px;
+  line-height: 30px;
+      background:#fff;
+      overflow-x:hidden;
+}
+
+
+body.bloqueado { overflow:hidden;  }
+body.scrolling { overflow-y:scroll; }
+
+
+
+.loading {
+  width: 100%;
+  height: 100vh;
+  background: #3f2948;
+  position: fixed;
+  z-index: 99;
+  line-height:0;
+ transition: opacity 1s ease 6.5s;
+}
+
+body.loaded .loading {
+  opacity:0;
+  pointer-events:none;
+}
+
+.loading .cena {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  top: 0;
+}
+
+.loading .casinha {
+  width: 25%;
+  position: relative;
+ transition: transform 2s ease;
+}
+
+.loading .filler {
+  z-index: 1;
+}
+
+.loading .loader {
+  position: absolute;
+  z-index: 2;
+    width: 100%;
+  height: 0;
+  bottom:0;
+  overflow: hidden;
+}
+
+.loading .loader svg {
+position:absolute;
+bottom: 0;
+width: 100%;
+height: auto;
+}
+
+
+body.loaded .loading .cena1 .casinha { transform:scale(5); }
+
+/*
+
+CENA 2 LOADING
+
+*/
+
+
+.loading .cena.cena2 {
+  z-index: 5;
+}
+
+.loading .cena.cena2 .camada {
+  transform: scale(0);
+  transition: transform 2s ease;
+  position: relative;
+       transition-delay: 0.2s;
+}
+
+.loading .cena.cena2 .camada svg {
+   z-index: 1;
+   position: absolute;
+   top: 0;
+   transform-origin: center center;
+  transition: transform 2s ease;
+      transition-delay: 0.2s;
+}
+
+.loading .cena.cena2 .camada svg.um { position:static; }
+
+.loading .cena.cena2 .camada svg.dois {
+  transform: scale(0.9);
+     z-index: 2;
+     transition-delay: 0.4s;
+}
+
+.loading .cena.cena2 .camada svg.tres {
+  transform: scale(0.7);
+  transition-delay: 0.6s;
+     z-index: 3;
+}
+
+.loading .cena.cena2 .camada svg.quatro {
+  transform: scale(0.6);
+  transition-delay: 0.8s;
+     z-index: 4;
+}
+
+.loading .cena.cena2 .camada svg.cinco {
+  transform: scale(0.5);
+  transition-delay: 1s;
+     z-index: 5;
+}
+
+.loading .cena.cena2 .camada svg.seis {
+  transform: scale(0.4);
+  transition-delay: 1.2s;
+     z-index: 6;
+     
+}
+
+body.loaded .loading .cena.cena2 .camada svg.seis polygon {  animation: AnoiteceCamada 5s forwards 1.5s; }
+
+/* Standard syntax */
+@keyframes AnoiteceCamada {
+    0%   {  fill: #694a76; }
+    20%   {  fill: #694a76; }
+   100%   { fill: #3a1d49; }
+}
+
+body.loaded .loading .cena.cena2 .camada { transform:scale(3); }
+body.loaded .loading .cena.cena2 .camada svg { transform:scale(3); }
+
+/*
+
+CENA 3 LOADING
+
+*/
+
+.loading .cena.cena3 {
+  z-index: 6;
+  transform:scale(0);
+}
+
+/* Standard syntax */
+@keyframes AnoiteceCresce {
+    0%   {  transform:scale(0); }
+   100%   { transform:scale(1); }
+}
+
+
+body.loaded .loading .cena.cena3 {
+  animation: AnoiteceCresce 5s forwards 0.4s;
+}
+
+.loading .cena.cena3 .sunwrap {
+  width: 60%;
+  position: absolute;
+  z-index: 1;
+  padding-top: 8%;
+   transform: rotate(-180deg);
+}
+
+body.loaded .loading .cena.cena3 .sunwrap { animation: drawArc1 5s linear forwards 1.5s; }
+
+
+.loading .cena.cena3 .sol {
+  width: 14%;
+  padding-top: 14%;
+  position: absolute;
+  overflow: hidden;
+  right:0;
+  border-radius: 50%;
+  top:0;
+  transform: rotate(180deg);
+}
+
+body.loaded .loading .cena.cena3 .sol { animation: drawArc2 5s linear forwards 1.5s; }
+
+
+.loading .cena.cena3 .sol .lua {
+  width: 100%;
+height: 100%;
+  background: transparent;
+  position: absolute;
+  z-index: 4;
+  top: 0;
+    border-radius: 50%;
+  left: 100%;
+  bottom: 0;
+  right: 0;
+   transition: left 3s ease 2.9s, background 3s ease 2.9s;
+}
+
+/* Standard syntax */
+@keyframes AnoiteceLua {
+    0%   {  background-color: #694a76; }
+    20%   {  background-color: #694a76; }
+   100%   { background-color: #3a1d49; }
+}
+
+
+
+body.loaded .loading .cena.cena3 .sol .lua {
+
+animation: AnoiteceLua 5s forwards 1.5s;
+ left:30%; }
+
+.loading .cena.cena3 .sol .brilho {
+  width: 100%;
+  height: 100%;
+  top: 0;
+    position: absolute;
+    background: #ffa365;
+     transition: background 3s ease 3s;
+}
+
+body.loaded .loading .cena.cena3 .sol .brilho { background:#b1b8e4; }
+
+.seguraCubo {
+    width: 36vw;
+    height: 36vw;
+    position: relative;
+    z-index: 2;
+}
+
+body.loaded   .seguraCubo {   animation: cubeZoom 5s forwards 3.5s; }
+
+
+/* Standard syntax */
+@keyframes cubeZoom {
+    0%   {  transform: scale(1); }
+    100%   {  }
+}
+
+
+
+@keyframes drawArc1 {
+    0% { transform: rotate(-180deg); }
+    100%{ transform: rotate(0deg);  }
+}
+
+@keyframes drawArc2 {
+    0% { transform: rotate(180deg); }
+    100%{ transform: rotate(0deg); }
+}
+
+
+
+.casaCubo {
+    width: 18vw;
+    height: 18vw;
+    top: 35%;
+    transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transform: rotateX(-22deg) rotateY(35deg) rotateZ(0deg);
+    margin: auto;
+    position: relative;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+
+body.loaded .casaCubo {
+     animation: cubeRotation 5s forwards ease 1.5s;
+}
+
+/* Standard syntax */
+@keyframes cubeRotation {
+    0%   {  transform: rotateX(-22deg) rotateY(35deg) rotateZ(0deg); }
+    90%   { transform: rotateX(-22deg) rotateY(-155deg) rotateZ(0deg);   }
+    100%   { transform: rotateX(0deg) translateX(0vw) rotateY(-180deg) rotateZ(0deg) scale(6); }
+}
+
+
+.casaCubo .lado {
+    position: absolute;
+ transition: background 2s ease 1.5s;
+    width: 18vw;
+    height: 18vw;
+    float: left;
+    overflow: hidden;
+}
+
+.casaCubo .telhao {
+    position: absolute;
+ transition: background 2s ease 1.5s, border-color 2s ease 1.5s;
+    width: 18vw;
+    height: 13vw; /*     height: 80px;  */
+    float: left;
+    overflow: hidden;
+    transform-origin: bottom;
+}
+
+.casaCubo .telhao.side1 {
+    transform: rotateX(45deg) translateX(0) translateY(-2.6vw) translateZ(15.6vw);
+  background-color: #66394b;
+}
+
+body.loaded .casaCubo .telhao.side1 {
+  animation: AnoiteceSide1 5s forwards 1.5s;
+}
+
+/* Standard syntax */
+@keyframes AnoiteceSide1 {
+    0%   {  background-color: #66394b; }
+    20%   {  background-color: #66394b; }
+    50%   {  background-color: #7e4d52; }
+   100%   {  background-color: #66394b; }
+}
+
+.casaCubo .telhao.side1::before {
+  width: 100%;
+  height: 100%;
+  display: block;
+  content: '';
+  position: absolute;
+  left: 0;
+ transition: width 2s ease 1.5s, opacity 2s ease 1.5s;
+ opacity:0.3;
+background: rgb(230,129,94);
+background: -moz-linear-gradient(90deg, rgba(230,129,94,1) 0%, rgba(209,102,78,1) 5%, rgba(209,102,78,0) 100%);
+background: -webkit-linear-gradient(90deg, rgba(230,129,94,1) 0%, rgba(209,102,78,1) 5%, rgba(209,102,78,0) 100%);
+background: linear-gradient(90deg, rgba(230,129,94,1) 0%, rgba(209,102,78,1) 5%, rgba(209,102,78,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e6815e",endColorstr="#d1664e",GradientType=1);
+}
+
+body.loaded .casaCubo .telhao.side1::before { width:0%; opacity:0; }
+
+
+
+/*
+
+TELHADO FINAL ILUMINADO PELA LUA
+
+*/
+
+.casaCubo .telhao.side2 {
+    transform: rotateX(-45deg) rotateY(180deg) translateX(0) translateY(-2.6vw) translateZ(15.6vw);
+  background-color: #b45b52;
+}
+
+body.loaded .casaCubo .telhao.side2 {
+  animation: AnoiteceSide2 5s forwards 1.5s;
+}
+
+@keyframes AnoiteceSide2 {
+    0%   {  background-color: #c3594b; }
+    20%   {  background-color: #c3594b; }
+    50%   {  background-color: #a24a3e; }
+   100%   {  background-color: #953b3c; }
+}
+
+.casaCubo .telhao.side2::before {
+  width: 0;
+  height: 100%;
+  display: block;
+  content: '';
+  position: absolute;
+  right: 0;
+ transition: width 3s ease 1.5s, opacity 3s ease 1.5s;
+ opacity:0;
+background: rgb(195,89,75);
+background: -moz-linear-gradient(90deg, rgba(195,89,75,0) 0%, rgba(195,89,75,1) 100%);
+background: -webkit-linear-gradient(90deg, rgba(195,89,75,0) 0%, rgba(195,89,75,1) 100%);
+background: linear-gradient(90deg, rgba(195,89,75,0) 0%, rgba(195,89,75,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c3594b",endColorstr="#c3594b",GradientType=1);
+}
+
+body.loaded .casaCubo .telhao.side2::before { width:100%; opacity:0.7; }
+
+
+
+.casaCubo .telhao.lateral {
+    transform: rotateY(-90deg) translateX(0px) translateY(-9vw) translateZ(9vw);
+   border-style: solid;
+    width: 0px;
+    height: 0px;
+    line-height: 0px;
+    background:transparent;
+    border-width: 0px 9vw 9vw; /*  d1664e  */
+    border-color: transparent transparent #e67056;
+    _border-color: #000 #000 #e67056 #000;
+    _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+
+
+/* 
+
+LATERAL FINAL
+
+*/
+
+
+.casaCubo .telhao.lateral.side4 {
+    transform: rotateY(90deg) translateX(0px) translateY(-9.01vw) translateZ(9vw);
+        border-color: transparent transparent #994f50;
+    _border-color: #000 #000 #994f50 #000;
+}
+
+body.loaded .casaCubo .telhao.lateral.side4 {
+  border-color: transparent transparent #994f50;
+    _border-color: #000 #000 #994f50 #000;
+  animation: AnoiteceSide4lat 5s forwards 2.5s;
+}
+
+/* Standard syntax */
+@keyframes AnoiteceSide4lat {
+    0%   {   border-color: transparent transparent #994f50;
+    _border-color: #000 #000 #994f50 #000;  }
+    30%   {   border-color: transparent transparent #844445;
+    _border-color: #000 #000 #844445 #000;  }
+   100%   {   border-color: transparent transparent #6e242f;
+    _border-color: #000 #000 #6e242f #000; }
+}
+
+
+.casaCubo .lado.side2 {
+    transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(9vw);
+  background-color: #e5a26f;
+}
+
+body.loaded .casaCubo .lado.side2 {
+  background-color: #4e335b;
+  transition-delay: 2.9s;
+}
+
+
+
+.casaCubo .lado.side2 .porta {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin: 0 0 0 -25%;
+  width: 30%;
+  height: 50%;
+  background: #c3594b;
+}
+
+
+
+/*
+
+LATERAL ILUMINADA NO COMEÇO
+
+*/
+
+.casaCubo .lado.side3 {
+    transform: translateX(0px) translateY(0px) translateZ(9vw);
+  background-color: #4e335b;
+}
+
+body.loaded .casaCubo .lado.side3 {
+  animation: AnoiteceSide3 3s forwards 2.5s;
+}
+
+/* Standard syntax */
+@keyframes AnoiteceSide3 {
+    0%   {  background-color: #4e335b; }
+    10%   {  background-color: #4e335b; }
+   100%   {  background-color: #2e1e34; }
+}
+
+
+.casaCubo .lado.side3::before {
+  width: 100%;
+  height: 100%;
+  display: block;
+  content: 'aaaaaa';
+  position: absolute;
+  left: 0;
+ transition: width 2s ease 1.5s, opacity 2s ease 1.5s;
+ opacity:1;
+background: rgb(97,65,93);
+background: -moz-linear-gradient(90deg, rgba(97,65,93,1) 0%, rgba(89,59,92,1) 5%, rgba(89,59,92,0) 100%);
+background: -webkit-linear-gradient(90deg, rgba(97,65,93,1) 0%, rgba(89,59,92,1) 5%, rgba(89,59,92,0) 100%);
+background: linear-gradient(90deg, rgba(97,65,93,1) 0%, rgba(89,59,92,1) 5%, rgba(89,59,92,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#61415d",endColorstr="#593b5c",GradientType=1);
+}
+
+body.loaded .casaCubo .lado.side3::before { width:0%; opacity:0; }
+
+
+/*
+
+FACE DA CASA VIRADA PARA O FINAL
+
+*/
+
+
+.casaCubo .lado.side4 {
+    transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(9vw);
+  background-color: #4e335b;
+}
+
+body.loaded .casaCubo .lado.side4 {
+  transition-delay: 0s;
+  animation: AnoiteceSide4 5s forwards 2.5s;
+}
+
+/* Standard syntax */
+@keyframes AnoiteceSide4 {
+    0%   {  background-color: #4e335b; }
+    30%   {  background-color: #3d2847; }
+   100%   {  background-color: #2e1e34; }
+}
+
+
+/* LATERAL FINAL DA CASA */
+
+.casaCubo .lado.side5 {
+    transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(9vw);
+  background: #452d51;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.casaCubo .lado .janela {
+  width: 100vw;
+  height: 50vh;
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+      flex-wrap:wrap;
+      z-index: 4;
+      transform: scaleY(0.2) scaleX(0.4);
+       transition: background 2s ease 4s;
+}
+
+body.loaded .casaCubo .lado .janela {
+background: #e5a26e;
+  animation: janelaZoom1 1s forwards 6s;
+}
+
+/* Standard syntax */
+@keyframes janelaZoom1 {
+    0%   {  transform: scaleY(0.2) scaleX(0.4); }
+    70%   { transform: scaleY(0.8) scaleX(1.2);}
+   100%   { transform: scaleY(1.2) scaleX(1.6); }
+}
+
+.casaCubo .lado .janela .glass {
+  width: 48%;
+  height:47%;
+  background: #e5a26e;
+}
+
+
+
+.casaCubo .lado.side5::before {
+  width: 0;
+  height: 100%;
+  display: block;
+  content: '';
+  position: absolute;
+  right: 0;
+background: rgb(98,78,118);
+ transition: width 4s ease 2.2s, opacity 4s ease 2.2s;
+ opacity:0;
+background: -moz-linear-gradient(90deg, rgba(98,78,118,0) 0%, rgba(98,78,118,1) 100%);
+background: -webkit-linear-gradient(90deg, rgba(98,78,118,0) 0%, rgba(98,78,118,1) 100%);
+background: linear-gradient(90deg, rgba(98,78,118,0) 0%, rgba(98,78,118,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#624e76",endColorstr="#624e76",GradientType=1);
+}
+
+body.loaded .casaCubo .lado.side5::before { width:100%; opacity:0.7; }
+
+
+/*
+
+TELAS
+
+*/
+
+.tela {
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+
+.tela.roxo { background:#694a76; } 
+.tela.lilas { background:#bba2cd; } 
+.tela.amarelo { background:#e5a26e; } 
+.tela.vermelho { background:#e67056; } 
+
+.tela h1 { margin:0; }
+
+
